@@ -1,14 +1,21 @@
-import { FirebaseProvider } from "./context"
-import { Bar } from "./cpmponents/Bar"
-
+import { ProjectsProvider, SelectedProjectProvider, TasksProvider } from "./context"
+import { Main } from "./components/layout/Main";
+import React from "react";
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 function App() {
-  
-
   return (
-    <FirebaseProvider>
-      <Bar />
-    </FirebaseProvider>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <TasksProvider>
+        <SelectedProjectProvider>
+          <ProjectsProvider>
+            <Main />
+          </ProjectsProvider>
+        </SelectedProjectProvider>
+      </TasksProvider>
+    </LocalizationProvider>
+    
   )
 }
 

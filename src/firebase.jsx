@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { collection, getDocs, getFirestore, setDoc } from "firebase/firestore"; 
+import { getFirestore } from "firebase/firestore"; 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -16,23 +16,4 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app)
-
-const tasksRef = collection(db, 'tasks');
-const projectsRef = collection(db, 'projects');
-
-export const addTask = (object) => {
-  setDoc(tasksRef, object);
-}
-
-export const addProject = (object) => {
-  setDoc(projectsRef, object);
-}
-
-export async function readProjects () {
-  return await getDocs(projectsRef);
-}
-
-export function readTasks () {
-  return getDocs(tasksRef);
-}
+export const db = getFirestore(app);
